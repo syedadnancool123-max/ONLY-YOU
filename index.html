@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Just One Question 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 20px;
+      text-align: center;
+      width: 90%;
+      max-width: 360px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      animation: pop 0.6s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 28px;
+      margin: 10px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #yes {
+      background: #ff4081;
+      color: white;
+      box-shadow: 0 8px 20px rgba(255,64,129,0.4);
+      transition: transform 0.3s;
+    }
+
+    #yes:hover {
+      transform: scale(1.08);
+    }
+
+    #no {
+      background: #eee;
+      position: absolute;
+      transition: 0.2s;
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(255,255,255,0.6);
+      font-size: 18px;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-10vh); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating hearts -->
+  <script>
+    for (let i = 0; i < 18; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <div class="card">
+    <h1>Hey 💕</h1>
+    <p>I have something important to ask you…</p>
+    <h1>Will you be my Valentine? 💖</h1>
+
+    <button id="yes" onclick="yesClicked()">YES 🥰</button>
+    <button id="no">NO 🙈</button>
+  </div>
+
+<script>
+  let noCount = 0;
+  const noBtn = document.getElementById("no");
+  const messages = [
+    "NO 🙃",
+    "Are you sure? 😳",
+    "Think again 🥺",
+    "Pleaseee 🥹",
+    "Don’t break my heart 💔",
+    "Okay okay… still NO? 😭",
+    "I give up… 😞"
+  ];
+
+  function moveNo() {
+    noCount++;
+    let x = Math.random() * (window.innerWidth - 120);
+    let y = Math.random() * (window.innerHeight - 60);
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    if (noCount < messages.length) {
+      noBtn.innerText = messages[noCount];
+    }
+
+    if (noCount > 6) {
+      noBtn.style.transform = "scale(0.6)";
+    }
+  }
+
+  noBtn.addEventListener("mouseover", moveNo);
+  noBtn.addEventListener("touchstart", moveNo);
+
+  function yesClicked() {
+    document.body.innerHTML = `
+      <div style="
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:linear-gradient(135deg,#ff4081,#ff80ab);
+        color:white;
+        text-align:center;
+        padding:20px;
+        font-size:26px;">
+        💖 YAYYYY 💖<br><br>
+        You just made me the happiest person 😍<br>
+        Happy Valentine’s 💕
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>
